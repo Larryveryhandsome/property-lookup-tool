@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物件查詢系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>物件查詢系統</h1>
+    <label for="idInput">輸入售版編號:</label>
+    <input type="number" id="idInput" placeholder="例如: 1">
+    <button onclick="lookupProperty()">查詢</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        const properties = {
+            1: { address: "宜蘭市校舍路12號", person: "林其衞" },
+            2: { address: "陽明三路65號", person: "黃詩情" },
+            3: { address: "東港路二段468號", person: "楊茗傑" }
+        };
+
+        function lookupProperty() {
+            const id = document.getElementById("idInput").value;
+            const resultDiv = document.getElementById("result");
+
+            if (properties[id]) {
+                resultDiv.innerHTML = `
+                    <p><strong>地址:</strong> ${properties[id].address}</p>
+                    <p><strong>承辦人:</strong> ${properties[id].person}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">找不到該編號的資料，請確認輸入是否正確。</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
