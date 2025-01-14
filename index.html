@@ -53,18 +53,20 @@
 
         // 查詢功能
         function lookupProperty() {
-            const id = document.getElementById("idInput").value.trim();
-            const resultDiv = document.getElementById("result");
+    const id = document.getElementById("idInput").value.trim();
+    const resultDiv = document.getElementById("result");
 
-            if (properties[id]) {
-                resultDiv.innerHTML = `
-                    <p><strong>地址:</strong> ${properties[id].address}</p>
-                    <p><strong>承辦人:</strong> ${properties[id].person}</p>
-                `;
-            } else {
-                resultDiv.innerHTML = `<p style="color: red;">找不到該編號的資料，請確認輸入是否正確。</p>`;
-            }
-        }
+    const property = properties.find(item => item["售版編號"] === id);
+    if (property) {
+        resultDiv.innerHTML = `
+            <p><strong>地址:</strong> ${property["地址"]}</p>
+            <p><strong>承辦人:</strong> ${property["承辦人"]}</p>
+        `;
+    } else {
+        resultDiv.innerHTML = `<p style="color: red;">找不到該編號的資料，請確認輸入是否正確。</p>`;
+    }
+}
+
 
         // 支援按下 Enter 鍵查詢
         function handleEnter(event) {
