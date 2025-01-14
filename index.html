@@ -47,7 +47,11 @@
         fetch('data.json')
             .then(response => response.json())
             .then(data => {
-                properties = data;
+                // 將 JSON 陣列轉換為物件
+                properties = data.reduce((obj, item) => {
+                    obj[item["售版編號"]] = item;
+                    return obj;
+                }, {});
             })
             .catch(error => console.error('無法讀取 JSON 資料:', error));
 
@@ -58,8 +62,8 @@
 
             if (properties[id]) {
                 resultDiv.innerHTML = `
-                    <p><strong>地址:</strong> ${properties[id].address}</p>
-                    <p><strong>承辦人:</strong> ${properties[id].person}</p>
+                    <p><strong>地址:</strong> ${properties[id]["地址"]}</p>
+                    <p><strong>承辦人:</strong> ${properties[id]["承辦人"]}</p>
                 `;
             } else {
                 resultDiv.innerHTML = `<p style="color: red;">找不到該編號的資料，請確認輸入是否正確。</p>`;
