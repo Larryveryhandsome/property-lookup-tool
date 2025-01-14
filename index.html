@@ -44,16 +44,22 @@
         let properties = {}; // 儲存 JSON 資料
 
 // 從 JSON 檔案讀取資料
-fetch('https://script.google.com/macros/s/AKfycbwBavQP9fwwWnhpzWMFnfS336LKPNG-d5lhD5-jQ0KmfGSJeDUoHpoafKTIH_r8_pxm/exec')
-    .then(response => response.json())
-    .then(data => {
-        properties = data.reduce((obj, item) => {
-            obj[item["售版編號"]] = item;
-            return obj;
-        }, {});
-        console.log("載入的資料:", properties); // 調試用
-    })
-    .catch(error => console.error('無法讀取 JSON 資料:', error));
+fetch('https://script.google.com/macros/s/AKfycbwY-o00siATE21ItmtMXJI2I7VnGvBeUL0n5X5i0sxifxc7bk-aqkRMSZeldkkQljKz/exec', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  mode: 'cors'
+})
+  .then(response => response.json())
+  .then(data => {
+    properties = data.reduce((obj, item) => {
+      obj[item["售版編號"]] = item;
+      return obj;
+    }, {});
+  })
+  .catch(error => console.error('無法讀取 JSON 資料:', error));
+
 
 // 查詢功能
 function lookupProperty() {
