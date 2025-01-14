@@ -44,7 +44,7 @@
         let properties = {}; // 儲存 JSON 資料
 
         // 從 JSON 檔案讀取資料
-        fetch('https://drive.google.com/uc?export=download&id=1WZsXD9_Kccde-h_LvMeNtKDYoCstL3ss')
+        fetch('./data.json')
     .then(response => response.json())
     .then(data => {
         properties = data.reduce((obj, item) => {
