@@ -40,32 +40,44 @@
 
     <div class="result" id="result">查詢結果會顯示在這裡</div>
 
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
     <script>
         let properties = {}; // 儲存 JSON 資料
-
-        // 從 JSON 檔案讀取資料
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
+        var url = `https://app.zengzhisui.com/api/lge/data`;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
                 properties = data;
-            })
-            .catch(error => console.error('無法讀取 JSON 資料:', error));
+                console.log(properties)
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
 
         // 查詢功能
         function lookupProperty() {
-    const id = document.getElementById("idInput").value.trim();
-    const resultDiv = document.getElementById("result");
+            // console.log(properties)
+            const id = document.getElementById("idInput").value.trim();
+            const resultDiv = document.getElementById("result");
 
-    const property = properties.find(item => item["售版編號"] === id);
-    if (property) {
-        resultDiv.innerHTML = `
-            <p><strong>地址:</strong> ${property["地址"]}</p>
-            <p><strong>承辦人:</strong> ${property["承辦人"]}</p>
-        `;
-    } else {
-        resultDiv.innerHTML = `<p style="color: red;">找不到該編號的資料，請確認輸入是否正確。</p>`;
-    }
-}
+            const property = properties.find(item => item["售版編號"] === id);
+            if (property) {
+                resultDiv.innerHTML = `
+                    <p><strong>地址:</strong> ${property["地址"]}</p>
+                    <p><strong>承辦人:</strong> ${property["承辦人"]}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = `<p style="color: red;">找不到該編號的資料，請確認輸入是否正確。</p>`;
+            }
+        }
 
 
         // 支援按下 Enter 鍵查詢
