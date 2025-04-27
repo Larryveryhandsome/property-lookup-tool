@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笑死你打開這個幹嘛</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff4444;
+            margin-bottom: 20px;
+            animation: shake 0.5s infinite;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+            margin: 10px 0;
+        }
+        .cross {
+            font-size: 5em;
+            color: #FFD700;
+            margin: 20px 0;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn {
+            background-color: #ff4444;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>笑死你打開這個幹嘛</h1>
+        <p>基督教乾哪基督教ㄟ</p>
+        <div class="cross">✝️</div>
+        <p>這啥鬼網站啊，笑死，快回去滑X啦！</p>
+        <button class="btn" onclick="window.location.href='https://x.com'">回去滑X</button>
+    </div>
+
+    <script>
+        // 隨機彈出搞笑訊息
+        const messages = [
+            "你真的有夠無聊ㄟ！",
+            "這網站啥都沒有，快跑！",
+            "基督教表示：我沒惹你啊！",
+            "你是不是點錯東西了？",
+            "別看了，回去滑手機啦！"
+        ];
+        setInterval(() => {
+            alert(messages[Math.floor(Math.random() * messages.length)]);
+        }, 10000);
+    </script>
+</body>
+</html>
